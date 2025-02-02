@@ -1,10 +1,3 @@
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    text-align: center;
-}
-
 header {
     background-color: #0073e6;
     color: white;
@@ -26,7 +19,10 @@ nav ul li a {
     text-decoration: none;
     font-weight: bold;
 }
-
+h3 {
+    font-size: 35px;
+    color: darkgoldenrod;
+}
 main {
     padding: 20px;
 }
@@ -35,5 +31,54 @@ footer {
     margin-top: 20px;
     padding: 10px;
     background-color: #ddd;
+}
+body { font-family: Arial, sans-serif; text-align: center; margin: 20px; background-color: #f4f4f4; }
+
+        .city {
+            position: relative;
+            margin-bottom: 20px;
+            padding: 50px 20px;
+            border-radius: 10px;
+            color: white;
+            text-align: center;
+            cursor: pointer;
+            background-size: cover;
+            background-position: center;
+            filter: blur(3px);
+            transition: filter 0.5s ease, transform 0.3s ease-in-out;
+        }
+
+        .city:hover {
+            filter: brightness(70%) blur(0px);
+            transform: scale(1.1);
+        }
+
+        .city.active {
+            filter: brightness(100%) blur(0px);
+        }
+
+        .city h2 {
+            position: relative;
+            font-size: 32px;
+            font-weight: bold;
+            background: rgba(0, 0, 0, 0.5);
+            display: inline-block;
+            padding: 10px 20px;
+            border-radius: 8px;
+            z-index: 2;
+        }
+
+        .details {
+            display: none;
+            margin-top: 15px;
+            padding: 15px;
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 10px;
+        }
+
+footer {
+    margin-top: 30px;
+    font-size: 14px;
+    color: gray;
 }
 

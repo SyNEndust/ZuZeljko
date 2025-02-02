@@ -5,56 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kitajska 2025</title>
     <link rel="stylesheet" href="style.css">
-    <style>
-        body { font-family: Arial, sans-serif; text-align: center; margin: 20px; background-color: #f4f4f4; }
-
-        .city {
-            position: relative;
-            margin-bottom: 20px;
-            padding: 50px 20px;
-            border-radius: 10px;
-            color: white;
-            text-align: center;
-            cursor: pointer;
-            background-size: cover;
-            background-position: center;
-            transition: filter 0.5s ease, transform 0.3s ease-in-out;
-        }
-
-        .city:hover {
-            filter: brightness(70%) blur(3px);
-            transform: scale(1.03);
-        }
-
-        .city.active {
-            filter: brightness(100%) blur(0px);
-        }
-
-        .city h2 {
-            position: relative;
-            font-size: 32px;
-            font-weight: bold;
-            background: rgba(0, 0, 0, 0.5);
-            display: inline-block;
-            padding: 10px 20px;
-            border-radius: 8px;
-            z-index: 2;
-        }
-
-        .details {
-            display: none;
-            margin-top: 15px;
-            padding: 15px;
-            background: rgba(0, 0, 0, 0.7);
-            border-radius: 10px;
-        }
-
-        footer {
-            margin-top: 30px;
-            font-size: 14px;
-            color: gray;
-        }
-    </style>
 </head>
 <body>
     <header>
@@ -68,7 +18,7 @@
         </nav>
     </header>
 
-    <h2>Naš Itinerar</h2>
+    <h3>Naš Itinerar</h3>
     <p>Vse kar morate vedeti o Kitajski in še več</p>
 
     <div class="city" onclick="toggleDetails(this, 'shanghai')" style="background-image: url('images/shanghai.jpg');">
@@ -121,14 +71,17 @@
     </div>
 
     <footer>
-        <p>&copy; 2025 Žuželko.inc</p>
+        <p>&copy; 2025 Žuželko.inc
+            <a href="https://www.instagram.com/jure.zeljko/" target="_blank">
+                <img src="images/instagram.jpg" alt="Instagram" width="24" height="24">
+            </a>
+        </p>
     </footer>
 
     <script>
         function toggleDetails(element, cityId) {
             var details = document.getElementById(cityId);
             
-            // Preverimo, ali je že aktivno
             if (details.style.display === "none" || details.style.display === "") {
                 details.style.display = "block";
                 element.classList.add("active");
