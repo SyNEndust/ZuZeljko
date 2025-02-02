@@ -6,11 +6,54 @@
     <title>Kitajska 2025</title>
     <link rel="stylesheet" href="style.css">
     <style>
-        body { font-family: Arial, sans-serif; text-align: center; margin: 20px; }
-        .city { margin-bottom: 30px; padding: 20px; border: 1px solid #ddd; border-radius: 10px; background-color: #f9f9f9; }
-        h1 { color: white; }
-        h2 { color: #444; }
-        h3{color: purple;font-size: 25px;}
+        body { font-family: Arial, sans-serif; text-align: center; margin: 20px; background-color: #f4f4f4; }
+
+        .city {
+            position: relative;
+            margin-bottom: 20px;
+            padding: 50px 20px;
+            border-radius: 10px;
+            color: white;
+            text-align: center;
+            cursor: pointer;
+            background-size: cover;
+            background-position: center;
+            transition: filter 0.5s ease, transform 0.3s ease-in-out;
+        }
+
+        .city:hover {
+            filter: brightness(70%) blur(3px);
+            transform: scale(1.03);
+        }
+
+        .city.active {
+            filter: brightness(100%) blur(0px);
+        }
+
+        .city h2 {
+            position: relative;
+            font-size: 32px;
+            font-weight: bold;
+            background: rgba(0, 0, 0, 0.5);
+            display: inline-block;
+            padding: 10px 20px;
+            border-radius: 8px;
+            z-index: 2;
+        }
+
+        .details {
+            display: none;
+            margin-top: 15px;
+            padding: 15px;
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 10px;
+        }
+
+        footer {
+            margin-top: 30px;
+            font-size: 14px;
+            color: gray;
+        }
     </style>
 </head>
 <body>
@@ -24,44 +67,76 @@
             </ul>
         </nav>
     </header>
-    <h3>Naš Itinerar</h3>
-    <p>Vse kar morate vedeti o kitajski in še več</p>
-    <div class="city">
+
+    <h2>Naš Itinerar</h2>
+    <p>Vse kar morate vedeti o Kitajski in še več</p>
+
+    <div class="city" onclick="toggleDetails(this, 'shanghai')" style="background-image: url('images/shanghai.jpg');">
         <h2>Shanghai (Dan 1-5)</h2>
-        <p>Raziskovanje Pudonga, sprehod po Bundu, obisk Yu Gardena in Shanghai Tower.</p>
+        <div class="details" id="shanghai">
+            <p>Raziskovanje Pudonga, sprehod po Bundu, obisk Yu Gardena in Shanghai Tower.</p>
+        </div>
     </div>
     
-    <div class="city">
+    <div class="city" onclick="toggleDetails(this, 'kunming')" style="background-image: url('images/kunming.jpg');">
         <h2>Kunming (Dan 5-9)</h2>
-        <p>Obisk Lana in Ume, Kamnitega gozda, Green Lake Park in tempelj Yuantong + stvari, ki nam jih bosta razkazala.</p>
+        <div class="details" id="kunming">
+            <p>Obisk Lana in Ume, Kamnitega gozda, Green Lake Park in tempelj Yuantong.</p>
+        </div>
     </div>
     
-    <div class="city">
+    <div class="city" onclick="toggleDetails(this, 'zhangjiajie')" style="background-image: url('images/zhangjiajie.jpg');">
         <h2>Zhangjiajie (Dan 10-11)</h2>
-        <p>Raziskovanje narodnega parka Zhangjiajie, Avatar Gore in steklene poti na Tianmen.</p>
+        <div class="details" id="zhangjiajie">
+            <p>Raziskovanje narodnega parka Zhangjiajie, Avatar Gore in steklene poti na Tianmen.</p>
+        </div>
     </div>
-    
-    <div class="city">
+
+    <div class="city" onclick="toggleDetails(this, 'chongqing')" style="background-image: url('images/chongqing.jpg');">
         <h2>Chongqing (Dan 12-15)</h2>
-        <p>Obisk Jiefangbei, sprehod skozi Hongya Cave in križarjenje po reki Yangtze. Opcijsko Wolt-anje in najem avtomobila s katerim se pripeljemo v Chengdu</p>
+        <div class="details" id="chongqing">
+            <p>Obisk Jiefangbei, Hongya Cave in križarjenje po reki Yangtze.</p>
+        </div>
     </div>
-    
-    <div class="city">
+
+    <div class="city" onclick="toggleDetails(this, 'chengdu')" style="background-image: url('images/chengdu.jpg');">
         <h2>Chengdu (Dan 16-17)</h2>
-        <p>Obisk pand v raziskovalnem centru, sprehod po Kuanzhai Alley in uživanje v sečuanskem HotPot-u.</p>
+        <div class="details" id="chengdu">
+            <p>Obisk pand v raziskovalnem centru, sprehod po Kuanzhai Alley in uživanje v HotPot-u.</p>
+        </div>
     </div>
-    
-    <div class="city">
+
+    <div class="city" onclick="toggleDetails(this, 'xian')" style="background-image: url('images/xian.jpg');">
         <h2>Xi'an (Dan 18-19)</h2>
-        <p>Ogled Terakotne vojske, raziskovanje starodavnega mestnega obzidja in nakupovanje v Silk marketu.</p>
+        <div class="details" id="xian">
+            <p>Ogled Terakotne vojske, raziskovanje starodavnega mestnega obzidja in nakupovanje v Silk marketu.</p>
+        </div>
     </div>
-    
-    <div class="city">
+
+    <div class="city" onclick="toggleDetails(this, 'beijing')" style="background-image: url('images/beijing.jpg');">
         <h2>Beijing (Dan 20-23)</h2>
-        <p>Obisk Prepovedanega mesta, Velikega zidu, Poletne palače in Trga Tiananmen. Nakupovanje spominkov in priprava na odhod domov</p>
+        <div class="details" id="beijing">
+            <p>Obisk Prepovedanega mesta, Velikega zidu, Poletne palače in Trga Tiananmen.</p>
+        </div>
     </div>
+
     <footer>
         <p>&copy; 2025 Žuželko.inc</p>
     </footer>
+
+    <script>
+        function toggleDetails(element, cityId) {
+            var details = document.getElementById(cityId);
+            
+            // Preverimo, ali je že aktivno
+            if (details.style.display === "none" || details.style.display === "") {
+                details.style.display = "block";
+                element.classList.add("active");
+            } else {
+                details.style.display = "none";
+                element.classList.remove("active");
+            }
+        }
+    </script>
 </body>
 </html>
