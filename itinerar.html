@@ -11,9 +11,9 @@
         <h1>Dobrodošli na Kitajska 2025 strani!</h1>
         <nav>
             <ul>
-                <li><a href="itinerar.html">Itinerar</a></li>
-                <li><a href="vlak.html">Vlakovni spored</a></li>
-                <li><a href="slovar.html">Slovarček</a></li>
+                <li><button><a href="itinerar.html">Itinerar</a></button></li>
+                <li><button><a href="vlak.html">Transport</a></button></li>
+                <li><button><a href="slovar.html">Slovarček</a></li></button></li>
             </ul>
         </nav>
     </header>
@@ -33,7 +33,8 @@
     <div class="city"data-day="1" data-end="5" onclick="toggleDetails(this, 'shanghai')" style="background-image: url('images/shanghai.jpg');">
         <h2>Shanghai (Dan 1-5)</h2>
         <div class="details" id="shanghai">
-            <p>Raziskovanje Pudonga, sprehod po Bundu, obisk Yu Gardena in Shanghai Tower.</p>
+            <p>Raziskovanje Pudonga, sprehod po Bundu, obisk Yu Gardena in Shanghai Tower.
+            </p>
         </div>
     </div>
     
@@ -101,7 +102,7 @@
             }
         }
         function updateCountdown() {
-            const startDate = new Date(2025, 0, 18); // (leto, mesec - 1, dan)
+            const startDate = new Date(2025, 6, 18); // (leto, mesec - 1, dan)
             const today = new Date();
 
             // Izračun razlike dni
