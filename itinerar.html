@@ -21,61 +21,71 @@
     <h3>Naš Itinerar</h3>
     <p>Vse kar morate vedeti o Kitajski in še več</p>
 
-    <div class="city" onclick="toggleDetails(this, 'shanghai')" style="background-image: url('images/shanghai.jpg');">
+    <div id="countdown">Izlet še ni začet...</div>
+
+    <div class="city" data-day="0" data-end="0" onclick="toggleDetails(this, 'ljubljana')" style="background-image: url('images/ljubljana.jpg');">
+        <h2>Ljubljana (Priprava na odhod)</h2>
+        <div class="details" id="ljubljana">
+            <p>Planiranje izleta, nakupovanje kart in pakiranje švic majic.</p>
+        </div>
+    </div>
+
+    <div class="city"data-day="1" data-end="5" onclick="toggleDetails(this, 'shanghai')" style="background-image: url('images/shanghai.jpg');">
         <h2>Shanghai (Dan 1-5)</h2>
         <div class="details" id="shanghai">
             <p>Raziskovanje Pudonga, sprehod po Bundu, obisk Yu Gardena in Shanghai Tower.</p>
         </div>
     </div>
     
-    <div class="city" onclick="toggleDetails(this, 'kunming')" style="background-image: url('images/kunming.jpg');">
+    <div class="city" data-day="5" data-end="9" onclick="toggleDetails(this, 'kunming')" style="background-image: url('images/kunming.jpg');">
         <h2>Kunming (Dan 5-9)</h2>
         <div class="details" id="kunming">
             <p>Obisk Lana in Ume, Kamnitega gozda, Green Lake Park in tempelj Yuantong.</p>
         </div>
     </div>
     
-    <div class="city" onclick="toggleDetails(this, 'zhangjiajie')" style="background-image: url('images/zhangjiajie.jpg');">
+    <div class="city"data-day="10" data-end="11" onclick="toggleDetails(this, 'zhangjiajie')" style="background-image: url('images/zhangjiajie.jpg');">
         <h2>Zhangjiajie (Dan 10-11)</h2>
         <div class="details" id="zhangjiajie">
             <p>Raziskovanje narodnega parka Zhangjiajie, Avatar Gore in steklene poti na Tianmen.</p>
         </div>
     </div>
 
-    <div class="city" onclick="toggleDetails(this, 'chongqing')" style="background-image: url('images/chongqing.jpg');">
+    <div class="city" data-day="12" data-end="15" onclick="toggleDetails(this, 'chongqing')" style="background-image: url('images/chongqing.jpg');">
         <h2>Chongqing (Dan 12-15)</h2>
         <div class="details" id="chongqing">
             <p>Obisk Jiefangbei, Hongya Cave in križarjenje po reki Yangtze.</p>
         </div>
     </div>
 
-    <div class="city" onclick="toggleDetails(this, 'chengdu')" style="background-image: url('images/chengdu.jpg');">
+    <div class="city" data-day="16" data-end="17" onclick="toggleDetails(this, 'chengdu')" style="background-image: url('images/chengdu.jpg');">
         <h2>Chengdu (Dan 16-17)</h2>
         <div class="details" id="chengdu">
             <p>Obisk pand v raziskovalnem centru, sprehod po Kuanzhai Alley in uživanje v HotPot-u.</p>
         </div>
     </div>
 
-    <div class="city" onclick="toggleDetails(this, 'xian')" style="background-image: url('images/xian.jpg');">
+    <div class="city" data-day="18" data-end="19" onclick="toggleDetails(this, 'xian')" style="background-image: url('images/xian.jpg');">
         <h2>Xi'an (Dan 18-19)</h2>
         <div class="details" id="xian">
             <p>Ogled Terakotne vojske, raziskovanje starodavnega mestnega obzidja in nakupovanje v Silk marketu.</p>
         </div>
     </div>
 
-    <div class="city" onclick="toggleDetails(this, 'beijing')" style="background-image: url('images/beijing.jpg');">
+    <div class="city" data-day="20" data-end="23" onclick="toggleDetails(this, 'beijing')" style="background-image: url('images/beijing.jpg');">
         <h2>Beijing (Dan 20-23)</h2>
         <div class="details" id="beijing">
-            <p>Obisk Prepovedanega mesta, Velikega zidu, Poletne palače in Trga Tiananmen.</p>
+            <p>Obisk Prepovedanega mesta, Velikega zidu, Poletne palače in Trga Tiananmen. Priprava na let domov.</p>
         </div>
     </div>
 
     <footer>
-        <p>&copy; 2025 Žuželko.inc
+        <p>
             <a href="https://www.instagram.com/jure.zeljko/" target="_blank">
-                <img src="images/instagram.jpg" alt="Instagram" width="24" height="24">
+                <img src="images/instagram.jpg" alt="Instagram" width="20" height="20">
             </a>
         </p>
+        <p>&copy; 2025 Žuželko.inc</p>
     </footer>
 
     <script>
@@ -90,6 +100,51 @@
                 element.classList.remove("active");
             }
         }
+        function updateCountdown() {
+            const startDate = new Date(2025, 0, 18); // (leto, mesec - 1, dan)
+            const today = new Date();
+
+            // Izračun razlike dni
+            const timeDiff = today.getTime() - startDate.getTime();
+            const currentDay = Math.floor(timeDiff / (1000 * 60 * 60 * 24)) + 1;
+
+            const countdownElement = document.getElementById("countdown");
+
+            if (currentDay < 1) {
+                countdownElement.innerHTML = `Izlet se začne čez ${Math.abs(currentDay)} dni!`;
+
+                // Označi Ljubljano v rumenem okvirju, dokler izlet ne začne
+                document.querySelectorAll(".city").forEach(city => {
+                    const startDay = parseInt(city.dataset.day);
+                    if (currentDay < 1) {
+                        // Dodaj rumen okvir samo za Ljubljano, dokler izlet še ni začel
+                        if (city.dataset.day == 0) {
+                            city.classList.add("ljubljana");
+                        }
+                    } else {
+                        city.classList.remove("ljubljana");
+                    }
+                });
+            } else if (currentDay > 23) {
+                countdownElement.innerHTML = "Izlet je zaključen!";
+            } else {
+                countdownElement.innerHTML = `Dan ${currentDay} izleta`;
+
+                // Označi aktivno mesto
+                document.querySelectorAll(".city").forEach(city => {
+                    const startDay = parseInt(city.dataset.day);
+                    const endDay = parseInt(city.dataset.end);
+                    if (currentDay >= startDay && currentDay <= endDay) {
+                        city.classList.add("today");
+                    } else {
+                        city.classList.remove("today");
+                    }
+                });
+            }
+        }
+
+        updateCountdown();
+        setInterval(updateCountdown, 1000 * 60 * 60); // Osveži vsakih 1h
     </script>
 </body>
 </html>
