@@ -18,13 +18,89 @@
         </nav>
     </header>
     
-    <h3>Prikaz Excel Datoteke</h3>
+    <h2>Prikaz Excel Datoteke</h2>
     <p><a href="vlaki.htm" style="padding: 10px 20px; background-color: #0073e6; color: white; text-decoration: none; border-radius: 5px; display: block; width: fit-content;">
         Razpredelnica prevozov</a>
     </p>
     <a href="Kitajska.xlsx" download style="padding: 10px 20px; background-color: #0073e6; color: white; text-decoration: none; border-radius: 5px; display: block; width: fit-content;">
         📥 Prenesi Excel datoteko
     </a>
+    <p>Zadnja posodobitev: <span id="last-update">Preverjam...</span></p>
+
+
+    <h2 style="text-align: center;">Točne lokacije</h2>
+
+    <div class="mesto">
+        <h3>Šanghaj</h3>
+        <button onclick="changeMap('Huangpu boat cruise, Shanghai, China')">Boat Cruise</button>
+        <button onclick="changeMap('Xinyang market, Shanghai, China')">Yinyang market</button>
+        <button onclick="changeMap('Yu Garden, Shanghai, China')">Yu Garden</button>
+        <button onclick="changeMap('Zhujiajiao Ancient town, Shanghai, China')">Zhujiajiao</button>
+        <button onclick="changeMap('Jichang garden, Wuxi, China')">Jichang garden</button>
+
+    </div>
+    
+    <div class="mesto">
+        <h3>Hangzhou</h3>
+        <button onclick="changeMap('Stone Forest, Hangzhou, China')">Stone Forest</button>
+        <button onclick="changeMap('Green Lake Park, Kunming, China')">Green Lake Park</button>
+    </div>
+
+    <div class="mesto">
+        <h3>Kunming</h3>
+        <button onclick="changeMap('Stone Forest, Kunming, China')">Stone Forest</button>
+        <button onclick="changeMap('Green Lake Park, Kunming, China')">Green Lake Park</button>
+    </div>
+    
+    <div class="mesto">
+        <h3>Dali</h3>
+        <button onclick="changeMap('Three Pagodas, Dali, China')">Three Pagodas</button>
+        <button onclick="changeMap('Erhai Lake, Dali, China')">Erhai Lake</button>
+    </div>
+    
+    <div class="mesto">
+        <h3>Lijiang</h3>
+        <button onclick="changeMap('Lijiang Old Town, Lijiang, China')">Lijiang Old Town</button>
+        <button onclick="changeMap('Jade Dragon Snow Mountain, Lijiang, China')">Jade Dragon Snow Mountain</button>
+    </div>
+    
+    <div class="mesto">
+        <h3>Zhangjiajie</h3>
+        <button onclick="changeMap('National Forest Park, Zhangjiajie, China')">National Forest Park</button>
+        <button onclick="changeMap('Glass bridge, Zhangjiajie, China')">Glass bridge</button>
+        <button onclick="changeMap('Tianmen Mountain, Zhangjiajie, China')">Tianmen Mountain Gate</button>
+    </div>
+    
+    <div class="mesto">
+        <h3>Chongqing</h3>
+        <button onclick="changeMap('Ciqikou Ancient Town, Chongqing, China')">Ciqikou Ancient Town</button>
+        <button onclick="changeMap('Hongya Cave, Chongqing, China')">Hongya Cave</button>
+    </div>
+    
+    <div class="mesto">
+        <h3>Chengdu</h3>
+        <button onclick="changeMap('Chengdu Research Base of Giant Panda Breeding, China')">Panda Base</button>
+        <button onclick="changeMap('Jinli Ancient Street, Chengdu, China')">Jinli Ancient Street</button>
+    </div>
+    
+    <div class="mesto">
+        <h3>Xi'an</h3>
+        <button onclick="changeMap('Terracotta Army, Xi\'an, China')">Terracotta Army</button>
+        <button onclick="changeMap('Ancient City Wall, Xi\'an, China')">Ancient City Wall</button>
+    </div>
+    
+    <div class="mesto">
+        <h3>Peking (Beijing)</h3>
+        <button onclick="changeMap('Great Wall of China, Beijing, China')">Great Wall</button>
+        <button onclick="changeMap('Forbidden City, Beijing, China')">Forbidden City</button>
+        <button onclick="changeMap('Temple of Heaven, Beijing, China')">Temple of Heaven</button>
+    </div>
+    
+    <div id="map-container" class="map-container">
+        <iframe id="map-iframe" src="https://www.google.com/maps?q=31.233568,121.505504&output=embed"></iframe>
+    </div>
+    
+
     <footer>
         <p>
             <a href="https://www.instagram.com/volkci/" target="_blank">
@@ -33,5 +109,39 @@
         </p>
         <p>&copy; 2025 Žuželko.inc</p>
     </footer>
+
+    <script>
+        async function getLastUpdateDate() { //za updejt datoteke
+            const repo = "SyNEndust/ZuZeljko";
+            const filePath = "Kitajska.xlsx";
+            const apiUrl = `https://api.github.com/repos/${repo}/commits?path=${filePath}&per_page=1`;
+    
+            try {
+                const response = await fetch(apiUrl);
+                const data = await response.json();
+                if (data.length > 0) {
+                    const lastCommitDate = new Date(data[0].commit.committer.date);
+                    document.getElementById("last-update").textContent = lastCommitDate.toLocaleString("sl-SI");
+                } else {
+                    document.getElementById("last-update").textContent = "Ni podatkov o posodobitvah.";
+                }
+            } catch (error) {
+                console.error("Napaka pri pridobivanju datuma:", error);
+                document.getElementById("last-update").textContent = "Napaka pri nalaganju.";
+            }
+        }
+    
+        getLastUpdateDate();
+        //za lokacijo
+        
+        function changeMap(coords) {
+        const mapDiv = document.getElementById("map-container");
+        const iframe = document.getElementById("map-iframe");
+        iframe.src = "https://www.google.com/maps?q=" + coords + "&output=embed";
+        mapDiv.style.display = "flex";
+        mapDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+    
+    </script>
 </body>
 </html>

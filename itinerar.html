@@ -30,51 +30,51 @@
         </div>
     </div>
 
-    <div class="city"data-day="1" data-end="5" onclick="toggleDetails(this, 'shanghai')" style="background-image: url('images/shanghai.jpg');">
-        <h2>Shanghai (Dan 1-5)</h2>
+    <div class="city"data-day="1" data-end="4" onclick="toggleDetails(this, 'shanghai')" style="background-image: url('images/shanghai.jpg');">
+        <h2>Shanghai (Dan 1-4)</h2>
         <div class="details" id="shanghai">
-            <p>Raziskovanje Pudonga, sprehod po Bundu, obisk Yu Gardena in Shanghai Tower.
+            <p>Iskanje zaročenke na Marriage marketu, Yu garden, kupivanje fejkov in ladjica po Huangpu reki.
             </p>
         </div>
     </div>
     
-    <div class="city" data-day="5" data-end="9" onclick="toggleDetails(this, 'kunming')" style="background-image: url('images/kunming.jpg');">
-        <h2>Kunming (Dan 5-9)</h2>
+    <div class="city" data-day="4" data-end="8" onclick="toggleDetails(this, 'kunming')" style="background-image: url('images/kunming.jpg');">
+        <h2>Kunming (Dan 4-8)</h2>
         <div class="details" id="kunming">
             <p>Obisk Lana in Ume, Kamnitega gozda, Green Lake Park in tempelj Yuantong.</p>
         </div>
     </div>
     
-    <div class="city"data-day="10" data-end="11" onclick="toggleDetails(this, 'zhangjiajie')" style="background-image: url('images/zhangjiajie.jpg');">
-        <h2>Zhangjiajie (Dan 10-11)</h2>
+    <div class="city"data-day="9" data-end="11" onclick="toggleDetails(this, 'zhangjiajie')" style="background-image: url('images/zhangjiajie.jpg');">
+        <h2>Zhangjiajie (Dan 9-11)</h2>
         <div class="details" id="zhangjiajie">
-            <p>Raziskovanje narodnega parka Zhangjiajie, Avatar Gore in steklene poti na Tianmen.</p>
+            <p>Raziskovanje narodnega parka Zhangjiajie, Vrat nebes in Steklenega mosta.</p>
         </div>
     </div>
 
-    <div class="city" data-day="12" data-end="15" onclick="toggleDetails(this, 'chongqing')" style="background-image: url('images/chongqing.jpg');">
-        <h2>Chongqing (Dan 12-15)</h2>
+    <div class="city" data-day="10" data-end="13" onclick="toggleDetails(this, 'chongqing')" style="background-image: url('images/chongqing.jpg');">
+        <h2>Chongqing (Dan 10-13)</h2>
         <div class="details" id="chongqing">
-            <p>Obisk Jiefangbei, Hongya Cave in križarjenje po reki Yangtze.</p>
+            <p>Obisk Jiefangbei, Hongya Cave in Woltanje po cyberpunk mestu.</p>
         </div>
     </div>
 
-    <div class="city" data-day="16" data-end="17" onclick="toggleDetails(this, 'chengdu')" style="background-image: url('images/chengdu.jpg');">
-        <h2>Chengdu (Dan 16-17)</h2>
+    <div class="city" data-day="14" data-end="14" onclick="toggleDetails(this, 'chengdu')" style="background-image: url('images/chengdu.jpg');">
+        <h2>Chengdu (Dan 14)</h2>
         <div class="details" id="chengdu">
             <p>Obisk pand v raziskovalnem centru, sprehod po Kuanzhai Alley in uživanje v HotPot-u.</p>
         </div>
     </div>
 
-    <div class="city" data-day="18" data-end="19" onclick="toggleDetails(this, 'xian')" style="background-image: url('images/xian.jpg');">
-        <h2>Xi'an (Dan 18-19)</h2>
+    <div class="city" data-day="15" data-end="16" onclick="toggleDetails(this, 'xian')" style="background-image: url('images/xian.jpg');">
+        <h2>Xi'an (Dan 15-16)</h2>
         <div class="details" id="xian">
             <p>Ogled Terakotne vojske, raziskovanje starodavnega mestnega obzidja in nakupovanje v Silk marketu.</p>
         </div>
     </div>
 
-    <div class="city" data-day="20" data-end="23" onclick="toggleDetails(this, 'beijing')" style="background-image: url('images/beijing.jpg');">
-        <h2>Beijing (Dan 20-23)</h2>
+    <div class="city" data-day="17" data-end="19" onclick="toggleDetails(this, 'beijing')" style="background-image: url('images/beijing.jpg');">
+        <h2>Beijing (Dan 17-19)</h2>
         <div class="details" id="beijing">
             <p>Obisk Prepovedanega mesta, Velikega zidu, Poletne palače in Trga Tiananmen. Priprava na let domov.</p>
         </div>
@@ -102,7 +102,7 @@
             }
         }
         function updateCountdown() {
-            const startDate = new Date(2025, 6, 18); // (leto, mesec - 1, dan)
+            const startDate = new Date(2025, 6, 20); // (leto, mesec - 1, dan)
             const today = new Date();
 
             // Izračun razlike dni
@@ -114,11 +114,11 @@
             if (currentDay < 1) {
                 countdownElement.innerHTML = `Izlet se začne čez ${Math.abs(currentDay)} dni!`;
 
-                // Označi Ljubljano v rumenem okvirju, dokler izlet ne začne
+                // Ljubljana na začetku
                 document.querySelectorAll(".city").forEach(city => {
                     const startDay = parseInt(city.dataset.day);
                     if (currentDay < 1) {
-                        // Dodaj rumen okvir samo za Ljubljano, dokler izlet še ni začel
+                        // rumena okol
                         if (city.dataset.day == 0) {
                             city.classList.add("ljubljana");
                         }
@@ -126,12 +126,12 @@
                         city.classList.remove("ljubljana");
                     }
                 });
-            } else if (currentDay > 23) {
+            } else if (currentDay > 19) {
                 countdownElement.innerHTML = "Izlet je zaključen!";
             } else {
                 countdownElement.innerHTML = `Dan ${currentDay} izleta`;
 
-                // Označi aktivno mesto
+                // aktivno mesto
                 document.querySelectorAll(".city").forEach(city => {
                     const startDay = parseInt(city.dataset.day);
                     const endDay = parseInt(city.dataset.end);
@@ -145,7 +145,7 @@
         }
 
         updateCountdown();
-        setInterval(updateCountdown, 1000 * 60 * 60); // Osveži vsakih 1h
+        setInterval(updateCountdown, 1000 * 60 * 60); // refresh na 1h
     </script>
 </body>
 </html>
