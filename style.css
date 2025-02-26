@@ -19,6 +19,15 @@ nav ul li a {
     font-weight: bold;
     color: white;
 }
+
+h1 {
+    color: wheat;
+}
+
+h2 {
+    color: black;
+}
+
 h3 {
     font-size: 35px;
     color: darkgoldenrod;
@@ -114,10 +123,37 @@ body { font-family: Arial, sans-serif; text-align: center; margin: 20px; backgro
             width: 80%;
             height: 100%;
             border: 0;
-            text-align: center;
-            align-items: center;
+            border: 0;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
-
+        
+        .info-box {
+            display: none;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin-top: 10px;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: left;
+            width: 300px;
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 10; /* info ostane na vrhu */
+            user-select: none;
+        }
+        
+        button:hover + .info-box, .info-box:hover {
+            display: block;
+        }
+        
+        .dragging {
+            cursor: move;
+            user-select: none;
+        }
+        
 footer {
     margin-top: 30px;
     font-size: 14px;
@@ -131,9 +167,11 @@ th { background-color: #0073e6; color: white; }
 button{
     background-color: #0073e6;
     padding: 5px;
-    border: 0;
+    border: none;
     border-radius: 10px;
     font-size: 20px;
+    cursor: grab;
+    margin: 5px;
 }
 button:hover{
     background-color: aquamarine;

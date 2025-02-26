@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="sl">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kitajska 2025</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
     <header>
         <h1>Dobrodošli na Kitajska 2025 strani!</h1>
@@ -17,12 +19,14 @@
             </ul>
         </nav>
     </header>
-    
+
     <h2>Prikaz Excel Datoteke</h2>
-    <p><a href="vlaki.htm" style="padding: 10px 20px; background-color: #0073e6; color: white; text-decoration: none; border-radius: 5px; display: block; width: fit-content;">
-        Razpredelnica prevozov</a>
+    <p><a href="vlaki.htm"
+            style="padding: 10px 20px; background-color: #0073e6; color: white; text-decoration: none; border-radius: 5px; display: block; width: fit-content;">
+            Razpredelnica prevozov</a>
     </p>
-    <a href="Kitajska.xlsx" download style="padding: 10px 20px; background-color: #0073e6; color: white; text-decoration: none; border-radius: 5px; display: block; width: fit-content;">
+    <a href="Kitajska.xlsx" download
+        style="padding: 10px 20px; background-color: #0073e6; color: white; text-decoration: none; border-radius: 5px; display: block; width: fit-content;">
         📥 Prenesi Excel datoteko
     </a>
     <p>Zadnja posodobitev: <span id="last-update">Preverjam...</span></p>
@@ -32,72 +36,374 @@
 
     <div class="mesto">
         <h3>Šanghaj</h3>
-        <button onclick="changeMap('Huangpu boat cruise, Shanghai, China')">Boat Cruise</button>
-        <button onclick="changeMap('Xinyang market, Shanghai, China')">Yinyang market</button>
-        <button onclick="changeMap('Yu Garden, Shanghai, China')">Yu Garden</button>
-        <button onclick="changeMap('Zhujiajiao Ancient town, Shanghai, China')">Zhujiajiao</button>
-        <button onclick="changeMap('Jichang garden, Wuxi, China')">Jichang garden</button>
+        <button onmouseover="showInfo('boat-cruise-info')" onmouseout="hideInfo('boat-cruise-info')"
+            onclick="changeMap('Huangpu boat cruise, Shanghai, China')">
+            Boat Cruise
+        </button>
+        <div id="boat-cruise-info" class="info-box" onmousedown="dragStart(event)">
+            <p><strong>Čas:</strong> 10:00 - 18:00</p>
+            <p><strong>Kako do tja:</strong> Z vlakom do postaje Huangpu, nato peš 5 minut.</p>
+            <p><strong>Opis:</strong> Čudovit izlet z ladjo po reki Huangpu.</p>
+        </div>
 
+        <button onmouseover="showInfo('yinyang-market-info')" onmouseout="hideInfo('yinyang-market-info')"
+            onclick="changeMap('Xinyang market, Shanghai, China')">
+            Yinyang market
+        </button>
+        <div id="yinyang-market-info" class="info-box" onmousedown="dragStart(event)">
+            <p><strong>Čas:</strong> 08:00 - 20:00</p>
+            <p><strong>Kako do tja:</strong> Z avtobusom do postaje Xinyang, nato peš 2 minuti.</p>
+            <p><strong>Opis:</strong> Tradicionalni trg z lokalnimi specialitetami.</p>
+        </div>
+
+        <button onmouseover="showInfo('yu-garden-info')" onmouseout="hideInfo('yu-garden-info')"
+            onclick="changeMap('Yu Garden, Shanghai, China')">
+            Yu Garden
+        </button>
+        <div id="yu-garden-info" class="info-box" onmousedown="dragStart(event)">
+            <p><strong>Čas:</strong> 08:30 - 17:00</p>
+            <p><strong>Kako do tja:</strong> Z metrojem ali peš iz mestnega središča.</p>
+            <p><strong>Opis:</strong> Zgodovinski kitajski vrtnarski kompleks, znan po svoji klasični arhitekturi,
+                ribnikih in kamnitih poteh.</p>
+        </div>
+
+        <button onmouseover="showInfo('zhujiajiao-info')" onmouseout="hideInfo('zhujiajiao-info')"
+            onclick="changeMap('Zhujiajiao Water Town, Shanghai, China')">
+            Zhujiajiao
+        </button>
+        <div id="zhujiajiao-info" class="info-box" onmousedown="dragStart(event)">
+            <p><strong>Čas:</strong> Cel dan</p>
+            <p><strong>Kako do tja:</strong> Z vlakom ali taksijem iz Pekinga, predlagan izlet iz Shanghaia.</p>
+            <p><strong>Opis:</strong> Zgodovinsko vodno mesto z mostovi, tradicionalnimi hišami in kanaliziranimi
+                ulicami, ki nudi ubežališče pred mestnim vrvežem.</p>
+        </div>
+
+        <button onmouseover="showInfo('jichang-garden-info')" onmouseout="hideInfo('jichang-garden-info')"
+            onclick="changeMap('Jichang Garden, Shanghai, China')">
+            Jichang Garden
+        </button>
+        <div id="jichang-garden-info" class="info-box" onmousedown="dragStart(event)">
+            <p><strong>Čas:</strong> 08:00 - 17:00</p>
+            <p><strong>Kako do tja:</strong> Z metrojem ali taksijem iz mestnega središča.</p>
+            <p><strong>Opis:</strong> Čudovit kitajski vrt, znan po svojih zelenih pokrajinah, jezercu in mirnem okolju.
+            </p>
+        </div>
     </div>
-    
+
     <div class="mesto">
         <h3>Hangzhou</h3>
-        <button onclick="changeMap('Longjing tea plantation, Hangzhou, China')">Longjing tea plantation</button>
-        <button onclick="changeMap('Yunqi Bamboo forest, Hangzhou, China')">Yunqi Bamboo forest</button>
+        <button onmouseover="showInfo('longjing-tea-info')" onmouseout="hideInfo('longjing-tea-info')"
+            onclick="changeMap('Longjing Tea Plantation, Hangzhou, China')">
+            Longjing Tea Plantation
+        </button>
+        <div id="longjing-tea-info" class="info-box" onmousedown="dragStart(event)">
+            <p><strong>Čas:</strong> 09:00 - 17:00</p>
+            <p><strong>Kako do tja:</strong> Z avtobusom do postaje Longjing, nato peš 10 minut.</p>
+            <p><strong>Opis:</strong> Obiščite eno najbolj znanih plantaž zelenega čaja Longjing in spoznajte proces
+                pridelave.</p>
+        </div>
+
+        <button onmouseover="showInfo('yunqi-bamboo-info')" onmouseout="hideInfo('yunqi-bamboo-info')"
+            onclick="changeMap('Yunqi Bamboo Forest, Hangzhou, China')">
+            Yunqi Bamboo Forest
+        </button>
+        <div id="yunqi-bamboo-info" class="info-box" onmousedown="dragStart(event)">
+            <p><strong>Čas:</strong> 08:00 - 18:00</p>
+            <p><strong>Kako do tja:</strong> Z avtobusom do postaje Yunqi, nato peš 5 minut.</p>
+            <p><strong>Opis:</strong> Sprostite se v osupljivem bambusovem gozdu Yunqi, ki ponuja mir in svež zrak.</p>
+        </div>
     </div>
 
     <div class="mesto">
         <h3>Kunming</h3>
-        <button onclick="changeMap('Stone Forest, Kunming, China')">Stone Forest</button>
-        <button onclick="changeMap('Green Lake Park, Kunming, China')">Green Lake Park</button>
-    </div>
-    
-    <div class="mesto">
-        <h3>Dali</h3>
-        <button onclick="changeMap('Three Pagodas, Dali, China')">Three Pagodas</button>
-        <button onclick="changeMap('Erhai Lake, Dali, China')">Erhai Lake</button>
-    </div>
-    
-    <div class="mesto">
-        <h3>Lijiang</h3>
-        <button onclick="changeMap('Lijiang Old Town, Lijiang, China')">Lijiang Old Town</button>
-        <button onclick="changeMap('Jade Dragon Snow Mountain, Lijiang, China')">Jade Dragon Snow Mountain</button>
-    </div>
-    
-    <div class="mesto">
-        <h3>Zhangjiajie</h3>
-        <button onclick="changeMap('National Forest Park, Zhangjiajie, China')">National Forest Park</button>
-        <button onclick="changeMap('Glass bridge, Zhangjiajie, China')">Glass bridge</button>
-        <button onclick="changeMap('Tianmen Mountain, Zhangjiajie, China')">Tianmen Mountain Gate</button>
-    </div>
-    
-    <div class="mesto">
-        <h3>Chongqing</h3>
-        <button onclick="changeMap('Ciqikou Ancient Town, Chongqing, China')">Ciqikou Ancient Town</button>
-        <button onclick="changeMap('Hongya Cave, Chongqing, China')">Hongya Cave</button>
-    </div>
-    
-    <div class="mesto">
-        <h3>Chengdu</h3>
-        <button onclick="changeMap('Chengdu Research Base of Giant Panda Breeding, China')">Panda Base</button>
-        <button onclick="changeMap('Jinli Ancient Street, Chengdu, China')">Jinli Ancient Street</button>
-    </div>
-    
-    <div class="mesto">
-        <h3>Xi'an</h3>
-        <button onclick="changeMap('Terracotta Army, Xi\'an, China')">Terracotta Army</button>
-        <button onclick="changeMap('Ancient City Wall, Xi\'an, China')">Ancient City Wall</button>
-    </div>
-    
-    <div class="mesto">
-        <h3>Peking (Beijing)</h3>
-        <button onclick="changeMap('Great Wall of China, Beijing, China')">Great Wall</button>
-        <button onclick="changeMap('Forbidden City, Beijing, China')">Forbidden City</button>
-        <button onclick="changeMap('Temple of Heaven, Beijing, China')">Temple of Heaven</button>
+        <button onmouseover="showInfo('stone-forest-info')" onmouseout="hideInfo('stone-forest-info')"
+            onclick="changeMap('Stone Forest, Kunming, China')">
+            Stone Forest
+        </button>
+        <div id="stone-forest-info" class="info-box" onmousedown="dragStart(event)">
+            <p><strong>Čas:</strong> 08:00 - 17:30</p>
+            <p><strong>Kako do tja:</strong> Z avtobusom ali taksijem iz Kunminga (približno 1,5 ure vožnje).</p>
+            <p><strong>Opis:</strong> Impresivna naravna znamenitost s skalnimi formacijami, ki spominjajo na kamniti
+                gozd.</p>
+        </div>
+
+        <button onmouseover="showInfo('green-lake-info')" onmouseout="hideInfo('green-lake-info')"
+            onclick="changeMap('Green Lake Park, Kunming, China')">
+            Green Lake Park
+        </button>
+        <div id="green-lake-info" class="info-box" onmousedown="dragStart(event)">
+            <p><strong>Čas:</strong> 06:00 - 22:00</p>
+            <p><strong>Kako do tja:</strong> V središču Kunminga, dostopno peš ali s taksijem.</p>
+            <p><strong>Opis:</strong> Priljubljen park z lepimi jezercami, mostovi in številnimi pticami, idealen za
+                sprostitev.</p>
+        </div>
     </div>
 
+    <div class="mesto">
+        <h3>Dali</h3>
+        <button onmouseover="showInfo('three-pagodas-info')" onmouseout="hideInfo('three-pagodas-info')"
+            onclick="changeMap('Three Pagodas, Dali, China')">
+            Three Pagodas
+        </button>
+        <div id="three-pagodas-info" class="info-box" onmousedown="dragStart(event)">
+            <p><strong>Čas:</strong> 08:00 - 18:00</p>
+            <p><strong>Kako do tja:</strong> S taksijem ali kolesom iz starega mestnega jedra Dali.</p>
+            <p><strong>Opis:</strong> Ikonični budistični templji, znani po svoji edinstveni arhitekturi in zgodovinskem
+                pomenu.</p>
+        </div>
+
+        <button onmouseover="showInfo('erhai-lake-info')" onmouseout="hideInfo('erhai-lake-info')"
+            onclick="changeMap('Erhai Lake, Dali, China')">
+            Erhai Lake
+        </button>
+        <div id="erhai-lake-info" class="info-box" onmousedown="dragStart(event)">
+            <p><strong>Čas:</strong> Cel dan</p>
+            <p><strong>Kako do tja:</strong> Z avtobusom, kolesom ali ladjo iz Dali.</p>
+            <p><strong>Opis:</strong> Čudovito sladkovodno jezero, primerno za izlete z ladjo, kolesarjenje in
+                sproščanje ob vodi.</p>
+        </div>
+    </div>
+
+    <div class="mesto">
+        <h3>Lijiang</h3>
+        <button onmouseover="showInfo('old-town-info')" onmouseout="hideInfo('old-town-info')"
+            onclick="changeMap('Lijiang Old Town, Lijiang, China')">
+            Lijiang Old Town
+        </button>
+        <div id="old-town-info" class="info-box" onmousedown="dragStart(event)">
+            <p><strong>Čas:</strong> Cel dan</p>
+            <p><strong>Kako do tja:</strong> Peš iz večine hotelov v Lijiangu ali s taksijem.</p>
+            <p><strong>Opis:</strong> Zgodovinsko mestno jedro s tlakovanimi ulicami, tradicionalnimi lesenimi hišami in
+                živahno atmosfero.</p>
+        </div>
+
+        <button onmouseover="showInfo('jade-dragon-info')" onmouseout="hideInfo('jade-dragon-info')"
+            onclick="changeMap('Jade Dragon Snow Mountain, Lijiang, China')">
+            Jade Dragon Snow Mountain
+        </button>
+        <div id="jade-dragon-info" class="info-box" onmousedown="dragStart(event)">
+            <p><strong>Čas:</strong> 07:00 - 18:00</p>
+            <p><strong>Kako do tja:</strong> Z gondolo ali organiziranim prevozom iz Lijianga.</p>
+            <p><strong>Opis:</strong> Osupljiva gorska pokrajina s snežnimi vrhovi, pohodniškimi potmi in čudovitimi
+                razgledi.</p>
+        </div>
+    </div>
+
+    <div class="mesto">
+        <h3>Zhangjiajie</h3>
+        <button onmouseover="showInfo('national-forest-park-info')" onmouseout="hideInfo('national-forest-park-info')"
+            onclick="changeMap('Zhangjiajie National Forest Park, Zhangjiajie, China')">
+            National Forest Park
+        </button>
+        <div id="national-forest-park-info" class="info-box" onmousedown="dragStart(event)">
+            <p><strong>Čas:</strong> 07:00 - 18:00</p>
+            <p><strong>Kako do tja:</strong> Z avtobusom ali taksijem iz mesta Zhangjiajie.</p>
+            <p><strong>Opis:</strong> Osupljiva pokrajina s stebričastimi skalnimi formacijami, ki so navdihnile film
+                Avatar.</p>
+        </div>
+
+        <button onmouseover="showInfo('glass-bridge-info')" onmouseout="hideInfo('glass-bridge-info')"
+            onclick="changeMap('Zhangjiajie Glass Bridge, Zhangjiajie, China')">
+            Glass Bridge
+        </button>
+        <div id="glass-bridge-info" class="info-box" onmousedown="dragStart(event)">
+            <p><strong>Čas:</strong> 08:00 - 17:00</p>
+            <p><strong>Kako do tja:</strong> Z avtobusom ali taksijem iz mesta Zhangjiajie.</p>
+            <p><strong>Opis:</strong> Najdaljši in najvišji stekleni most na svetu, ki ponuja dih jemajoče razglede.</p>
+        </div>
+
+        <button onmouseover="showInfo('tianmen-mountain-info')" onmouseout="hideInfo('tianmen-mountain-info')"
+            onclick="changeMap('Tianmen Mountain, Zhangjiajie, China')">
+            Tianmen Mountain
+        </button>
+        <div id="tianmen-mountain-info" class="info-box" onmousedown="dragStart(event)">
+            <p><strong>Čas:</strong> 08:00 - 18:00</p>
+            <p><strong>Kako do tja:</strong> Z gondolo iz mesta Zhangjiajie ali avtobusom.</p>
+            <p><strong>Opis:</strong> Znana po "Vratih nebes" in eni najdaljših gondolskih voženj na svetu.</p>
+        </div>
+    </div>
+
+    <div class="mesto">
+        <h3>Chongqing</h3>
+        <button onmouseover="showInfo('hongya-cave-info')" onmouseout="hideInfo('hongya-cave-info')"
+            onclick="changeMap('Hongya Cave, Chongqing, China')">
+            Hongya Cave
+        </button>
+        <div id="hongya-cave-info" class="info-box" onmousedown="dragStart(event)">
+            <p><strong>Čas:</strong> 10:00 - 23:00</p>
+            <p><strong>Kako do tja:</strong> Z metrojem do postaje Xiaoshizi, nato peš 5 minut.</p>
+            <p><strong>Opis:</strong> Tradicionalni kompleks stavb s čudovitimi svetlobnimi dekoracijami, trgovinami in
+                restavracijami.</p>
+        </div>
+
+        <button onmouseover="showInfo('dazu-rock-carving-info')" onmouseout="hideInfo('dazu-rock-carving-info')"
+            onclick="changeMap('Dazu Rock Carvings, Chongqing, China')">
+            Dazu Rock Carvings
+        </button>
+        <div id="dazu-rock-carving-info" class="info-box" onmousedown="dragStart(event)">
+            <p><strong>Čas:</strong> 08:30 - 17:00</p>
+            <p><strong>Kako do tja:</strong> Z avtobusom iz Chongqinga (približno 2 uri vožnje).</p>
+            <p><strong>Opis:</strong> Starodavni budistični kamniti reliefi, ki so del UNESCO-ve svetovne dediščine.</p>
+        </div>
+
+        <button onmouseover="showInfo('wulong-cave-info')" onmouseout="hideInfo('wulong-cave-info')"
+            onclick="changeMap('Wulong Karst, Chongqing, China')">
+            Wulong Cave
+        </button>
+        <div id="wulong-cave-info" class="info-box" onmousedown="dragStart(event)">
+            <p><strong>Čas:</strong> 08:00 - 17:00</p>
+            <p><strong>Kako do tja:</strong> Z avtobusom ali organiziranim izletom iz Chongqinga.</p>
+            <p><strong>Opis:</strong> Spektakularna kraška pokrajina s kamnitimi mostovi in jamami.</p>
+        </div>
+
+        <button onmouseover="showInfo('jiefangbei-info')" onmouseout="hideInfo('jiefangbei-info')"
+            onclick="changeMap('Jiefangbei, Chongqing, China')">
+            Jiefangbei
+        </button>
+        <div id="jiefangbei-info" class="info-box" onmousedown="dragStart(event)">
+            <p><strong>Čas:</strong> Cel dan</p>
+            <p><strong>Kako do tja:</strong> Z metrojem do postaje Jiefangbei.</p>
+            <p><strong>Opis:</strong> Središče mesta s sodobnimi nebotičniki, trgovinami in znamenitim spomenikom
+                osvoboditve.</p>
+        </div>
+    </div>
+
+    <div class="mesto">
+        <h3>Chengdu</h3>
+        <button onmouseover="showInfo('panda-research-base-info')" onmouseout="hideInfo('panda-research-base-info')"
+            onclick="changeMap('Chengdu Research Base of Giant Panda Breeding, Chengdu, China')">
+            Panda Research Base
+        </button>
+        <div id="panda-research-base-info" class="info-box" onmousedown="dragStart(event)">
+            <p><strong>Čas:</strong> 07:30 - 18:00</p>
+            <p><strong>Kako do tja:</strong> Z metrojem do postaje Panda Avenue, nato s taksijem ali avtobusom.</p>
+            <p><strong>Opis:</strong> Svetovno znani raziskovalni center za vzrejo in ohranjanje velikih pand.</p>
+        </div>
+
+        <button onmouseover="showInfo('jinli-ancient-street-info')" onmouseout="hideInfo('jinli-ancient-street-info')"
+            onclick="changeMap('Jinli Ancient Street, Chengdu, China')">
+            Jinli Ancient Street
+        </button>
+        <div id="jinli-ancient-street-info" class="info-box" onmousedown="dragStart(event)">
+            <p><strong>Čas:</strong> 09:00 - 22:00</p>
+            <p><strong>Kako do tja:</strong> Z metrojem do postaje Huaxiba, nato peš 10 minut.</p>
+            <p><strong>Opis:</strong> Znana zgodovinska ulica s tradicionalno arhitekturo, lokalnimi prigrizki in
+                rokodelskimi trgovinicami.</p>
+        </div>
+    </div>
+
+    <div class="mesto">
+        <h3>Xi'an</h3>
+        <button onmouseover="showInfo('terracotta-info')" onmouseout="hideInfo('terracotta-info')"
+            onclick="changeMap('Terracotta Army, Xian, China')">
+            Terracotta Army
+        </button>
+        <div id="terracotta-info" class="info-box" onmousedown="dragStart(event)">
+            <p><strong>Čas:</strong> 08:30 - 17:00</p>
+            <p><strong>Kako do tja:</strong> Z avtobusom ali taksijem iz središča Xi'ana (približno 1 ura vožnje).</p>
+            <p><strong>Opis:</strong> Svetovno znana zbirka glinenih vojakov, ki varujejo grobnico prvega kitajskega
+                cesarja.</p>
+        </div>
+
+        <button onmouseover="showInfo('huashan-info')" onmouseout="hideInfo('huashan-info')"
+            onclick="changeMap('Mount Huashan, Xian, China')">
+            Huashan
+        </button>
+        <div id="huashan-info" class="info-box" onmousedown="dragStart(event)">
+            <p><strong>Čas:</strong> Cel dan</p>
+            <p><strong>Kako do tja:</strong> Z vlakom do postaje Huashanbei, nato z avtobusom ali gondolo.</p>
+            <p><strong>Opis:</strong> Ena izmed petih svetih kitajskih gora, znana po svojih strmih poteh in čudovitih
+                razgledih.</p>
+        </div>
+
+        <button onmouseover="showInfo('qianling-museum-info')" onmouseout="hideInfo('qianling-museum-info')"
+            onclick="changeMap('Qianling Mausoleum, Xian, China')">
+            Qianling Mausoleum
+        </button>
+        <div id="qianling-museum-info" class="info-box" onmousedown="dragStart(event)">
+            <p><strong>Čas:</strong> 08:00 - 17:30</p>
+            <p><strong>Kako do tja:</strong> Z avtobusom ali organiziranim izletom iz Xi'ana.</p>
+            <p><strong>Opis:</strong> Grobnica cesarice Wu Zetian, edine kitajske cesarice, s številnimi kamnitimi kipi
+                in zgodovinskimi spomeniki.</p>
+        </div>
+    </div>
+
+    <div class="mesto">
+        <h3>Beijing</h3>
+
+        <button onmouseover="showInfo('forbidden-city-info')" onmouseout="hideInfo('forbidden-city-info')"
+            onclick="changeMap('Forbidden City, Beijing, China')">
+            Forbidden City
+        </button>
+        <div id="forbidden-city-info" class="info-box" onmousedown="dragStart(event)">
+            <p><strong>Čas:</strong> 08:00 - 17:00</p>
+            <p><strong>Kako do tja:</strong> Peš iz mestnega središča ali z avtobusom in metrojem.</p>
+            <p><strong>Opis:</strong> Zgodovinska cesarska palača, znana po svoji veličini, arhitekturi in bogati
+                zgodovini.</p>
+        </div>
+
+        <button onmouseover="showInfo('tianmen-info')" onmouseout="hideInfo('tianmen-info')"
+            onclick="changeMap('Tiananmen Square, Beijing, China')">
+            Tiananmen Square
+        </button>
+        <div id="tianmen-info" class="info-box" onmousedown="dragStart(event)">
+            <p><strong>Čas:</strong> Cel dan</p>
+            <p><strong>Kako do tja:</strong> Peš iz večine mestnih predelov ali z metrojem.</p>
+            <p><strong>Opis:</strong> Ena največjih mestnih trgov na svetu, ki ima pomembno zgodovinsko in politično
+                vlogo v Kitajski.</p>
+        </div>
+
+        <button onmouseover="showInfo('wangfujing-street-info')" onmouseout="hideInfo('wangfujing-street-info')"
+            onclick="changeMap('Wangfujing Street, Beijing, China')">
+            Wangfujing Street
+        </button>
+        <div id="wangfujing-street-info" class="info-box" onmousedown="dragStart(event)">
+            <p><strong>Čas:</strong> 10:00 - 22:00</p>
+            <p><strong>Kako do tja:</strong> Z metrojem ali peš iz mestnega središča.</p>
+            <p><strong>Opis:</strong> Ena najbolj znanih nakupovalnih ulic v Pekingu, polna trgovin, restavracij in
+                uličnih tržnic.</p>
+        </div>
+
+        <button onmouseover="showInfo('summer-palace-info')" onmouseout="hideInfo('summer-palace-info')"
+            onclick="changeMap('Summer Palace, Beijing, China')">
+            Summer Palace
+        </button>
+        <div id="summer-palace-info" class="info-box" onmousedown="dragStart(event)">
+            <p><strong>Čas:</strong> 08:30 - 17:00</p>
+            <p><strong>Kako do tja:</strong> Z metrojem ali taksijem iz mestnega središča.</p>
+            <p><strong>Opis:</strong> Čudoviti park z jezerom, palačami in vrtovi, ki so bili nekoč poletni dvorec
+                cesarjev.</p>
+        </div>
+
+        <button onmouseover="showInfo('great-wall-info')" onmouseout="hideInfo('great-wall-info')"
+            onclick="changeMap('Great Wall of China, Beijing, China')">
+            Great Wall
+        </button>
+        <div id="great-wall-info" class="info-box" onmousedown="dragStart(event)">
+            <p><strong>Čas:</strong> Cel dan</p>
+            <p><strong>Kako do tja:</strong> Z avtobusom ali organiziranim izletom iz Pekinga.</p>
+            <p><strong>Opis:</strong> Ikonična kitajska velikanska obrambna zidovina, ki se razteza čez gore in doline
+                ter ponuja spektakularne razglede.</p>
+        </div>
+
+        <button onmouseover="showInfo('capital-museum-info')" onmouseout="hideInfo('capital-museum-info')"
+            onclick="changeMap('Beijing Capital Museum, Beijing, China')">
+            Beijing Capital Museum
+        </button>
+        <div id="capital-museum-info" class="info-box" onmousedown="dragStart(event)">
+            <p><strong>Čas:</strong> 09:00 - 17:00</p>
+            <p><strong>Kako do tja:</strong> Z metrojem ali taksijem iz mestnega središča.</p>
+            <p><strong>Opis:</strong> Moderni muzej, ki ponuja vpogled v bogato zgodovino Pekinga z različnimi artefakti
+                in razstavami.</p>
+        </div>
+    </div>
+
+
+
+
     <div id="map-container" class="map-container">
-        <iframe id="map-iframe" class="map-iframe" src="https://www.google.com/maps?q=31.233568,121.505504&output=embed"></iframe>
+        <iframe id="map-iframe" class="map-iframe"
+            src="https://www.google.com/maps?q=31.233568,121.505504&output=embed"></iframe>
     </div>
 
     <footer>
@@ -114,7 +420,7 @@
             const repo = "SyNEndust/ZuZeljko";
             const filePath = "Kitajska.xlsx";
             const apiUrl = `https://api.github.com/repos/${repo}/commits?path=${filePath}&per_page=1`;
-    
+
             try {
                 const response = await fetch(apiUrl);
                 const data = await response.json();
@@ -129,18 +435,63 @@
                 document.getElementById("last-update").textContent = "Napaka pri nalaganju.";
             }
         }
-    
+
         getLastUpdateDate();
         //za lokacijo
-        
+
         function changeMap(coords) {
-        const mapDiv = document.getElementById("map-container");
-        const iframe = document.getElementById("map-iframe");
-        iframe.src = "https://www.google.com/maps?q=" + coords + "&output=embed";
-        mapDiv.style.display = "flex";
-        mapDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    }
-    
+            const mapDiv = document.getElementById("map-container");
+            const iframe = document.getElementById("map-iframe");
+            iframe.src = "https://www.google.com/maps?q=" + coords + "&output=embed";
+            mapDiv.style.display = "flex";
+            mapDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+
+        //za prikaz infota pri gumbih
+        let activeBox = null;
+
+        function showInfo(id) {
+            if (activeBox) {
+                activeBox.style.display = 'none';
+            }
+            activeBox = document.getElementById(id);
+            activeBox.style.display = 'block';
+        }
+     
+        let offsetX = 0;
+        let offsetY = 0;
+
+
+        // Funkcija za začetek premikanja info boxa
+        function dragStart(e) {
+            activeBox = e.target;
+            offsetX = e.clientX - activeBox.getBoundingClientRect().left;
+            offsetY = e.clientY - activeBox.getBoundingClientRect().top;
+
+            activeBox.classList.add('dragging');
+
+            document.addEventListener('mousemove', dragMove);
+            document.addEventListener('mouseup', dragEnd);
+        }
+
+        // Funkcija za premikanje info boxa
+        function dragMove(e) {
+            if (activeBox) {
+                activeBox.style.left = (e.clientX - offsetX) + 'px';
+                activeBox.style.top = (e.clientY - offsetY) + 'px';
+            }
+        }
+
+        // Funkcija za končanje premikanja info boxa
+        function dragEnd() {
+            if (activeBox) {
+                activeBox.classList.remove('dragging');
+                document.removeEventListener('mousemove', dragMove);
+                document.removeEventListener('mouseup', dragEnd);
+            }
+        }
+
     </script>
 </body>
+
 </html>
