@@ -88,6 +88,7 @@ body { font-family: Arial, sans-serif; text-align: center; margin: 20px; backgro
 
 
         .city h2 {
+            color: white;
             position: relative;
             font-size: 32px;
             font-weight: bold;
