@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="sl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kitajska 2025</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; }
+        .gallery { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 20px; }
+        .gallery img { width: 150px; height: 150px; object-fit: cover; border-radius: 8px; }
+        .upload-container { margin-top: 20px; }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Dobrodošli na Kitajska 2025 strani!</h1>
+        <nav>
+            <ul>
+                <li><button><a href="itinerar.html">Itinerar</a></button></li>
+                <li><button><a href="vlak.html">Transport</a></button></li>
+                <li><button><a href="slovar.html">Slovarček</a></li></button></li>
+                <li><button><a href="album.html">Album</a></li></button></li>
+            </ul>
+        </nav>
+    </header>
+
+    <h3>Moj Foto Album</h3>
+    <div class="upload-container">
+        <input type="file" id="fileInput" accept="image/*" multiple>
+        <button onclick="uploadImages()">Naloži slike</button>
+    </div>
+    <div class="gallery" id="gallery"></div>
+
+    <footer>
+        <p>
+            <a href="https://www.instagram.com/volkci/" target="_blank">
+                <img src="images/instagram.jpg" alt="Instagram" width="20" height="20">
+            </a>
+        </p>
+        <p>&copy; 2025 Žuželko.inc</p>
+    </footer>
+
+    <script>
+        function uploadImages() {
+            const input = document.getElementById('fileInput');
+            const gallery = document.getElementById('gallery');
+            
+            for (const file of input.files) {
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    const imgContainer = document.createElement('div');
+                    const img = document.createElement('img');
+                    const btn = document.createElement('button');
+                    
+                    img.src = event.target.result;
+                    btn.innerText = '×';
+                    btn.classList.add('delete-btn');
+                    btn.onclick = function() { imgContainer.remove(); };
+                    
+                    imgContainer.appendChild(img);
+                    imgContainer.appendChild(btn);
+                    gallery.appendChild(imgContainer);
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+const GITHUB_USERNAME = "SyNEndust";
+const GITHUB_REPO = "ZuZeljko";
+const GITHUB_BRANCH = "main"; // Ali drug branch, kjer so slike
+const GITHUB_TOKEN = "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"; // Nikoli ne objavi tega v javnosti!
+
+async function uploadImages() {
+    const input = document.getElementById('fileInput');
+    const gallery = document.getElementById('gallery');
+
+    for (const file of input.files) {
+        const reader = new FileReader();
+
+        reader.onload = async function(event) {
+            const imageData = event.target.result.split(',')[1]; // Base64 vsebina slike
+            const fileName = `images/${Date.now()}_${file.name}`; // Ustvari edinstveno ime datoteke
+
+            // Pošlji sliko v GitHub
+            const response = await fetch(`https://api.github.com/repos/${GITHUB_USERNAME}/${GITHUB_REPO}/contents/${fileName}`, {
+                method: "PUT",
+                headers: {
+                    "Authorization": `token ${GITHUB_TOKEN}`,
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    message: `Nalaganje slike ${file.name}`,
+                    content: imageData,
+                    branch: GITHUB_BRANCH
+                })
+            });
+
+            const result = await response.json();
+
+            if (response.ok) {
+                // Prikaži sliko v galeriji
+                const imgContainer = document.createElement('div');
+                const img = document.createElement('img');
+                const btn = document.createElement('button');
+
+                img.src = result.content.download_url; // URL naložene slike
+                btn.innerText = '×';
+                btn.classList.add('delete-btn');
+                btn.onclick = function() { imgContainer.remove(); };
+
+                imgContainer.appendChild(img);
+                imgContainer.appendChild(btn);
+                gallery.appendChild(imgContainer);
+            } else {
+                alert("Napaka pri nalaganju: " + result.message);
+            }
+        };
+
+        reader.readAsDataURL(file);
+    }
+}
+
+    </script>
+</body>
+</html>

@@ -43,6 +43,23 @@ footer {
 }
 body { font-family: Arial, sans-serif; text-align: center; margin: 20px; background-color: #f4f4f4; }
 
+.gallery { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 20px; }
+.gallery div { position: relative; display: inline-block; }
+.gallery img { width: 150px; height: 150px; object-fit: cover; border-radius: 8px; }
+.delete-btn {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background: red;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+.upload-container { margin-top: 20px; }
+
         #countdown {
             font-size: 20px;
             font-weight: bold;
@@ -154,7 +171,7 @@ body { font-family: Arial, sans-serif; text-align: center; margin: 20px; backgro
             cursor: move;
             user-select: none;
         }
-        
+
 footer {
     margin-top: 30px;
     font-size: 14px;
